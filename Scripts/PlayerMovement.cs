@@ -5,47 +5,43 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-   
+
     private int playerRow = 0;
     private int playerColumn = 0;
-    private string bird;
-    List<string> birdsNames = new List<string>();
+    public GameObject Text;
+   // public GameObject cube;
+   // List<string> gamealphabets = new List<string>();
 
-    public TextMeshProUGUI textpro;
+   //public TextMeshProUGUI textpro;
+    public TextMeshPro textMeshPro;
     // Start is called before the first frame update
     void Start()
     {
-         birdsNames.Add("Pigeon");   
-         birdsNames.Add("Peacock");  
-         birdsNames.Add("Ostrich");  
-         birdsNames.Add("Turkey");   
-         birdsNames.Add("Sparrow");  
-         birdsNames.Add("Crow");     
-         birdsNames.Add("Parrot");   
-         birdsNames.Add("Cocktail"); 
-         birdsNames.Add("Eagle");    
+       
+      
     }
 
-    public void GetRandomBirdName()
-    {
-        bird = birdsNames[Random.Range(0, birdsNames.Count)];
-        textpro.text = ("Bird name : " + bird);
-    }
-
+  
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Text.SetActive(true);
+            Debug.Log("O Pressed");
+        }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             playerRow += 1;
             if (playerRow > 2)
             {
                 playerRow -= 1;
+              
             }
             else
             {
                 transform.Translate(0, 1.5f, 0);
-                GetRandomBirdName();
+               
             }
 
         }
@@ -61,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 transform.Translate(0, -1.5f, 0);
-                GetRandomBirdName();
+             
             }
 
 
@@ -70,14 +66,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             playerColumn += 1;
-            if (playerColumn>2)
+            if (playerColumn > 2)
             {
                 playerColumn -= 1;
             }
             else
             {
                 transform.Translate(1.5f, 0, 0);
-                GetRandomBirdName();
+              
             }
         }
 
@@ -91,8 +87,12 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 transform.Translate(-1.5f, 0, 0);
-                GetRandomBirdName();
+                
             }
         }
+       
+
+        print(playerRow+ "," + playerColumn);
+      
     }
 }
